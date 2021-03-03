@@ -1,11 +1,13 @@
 <?php
-  if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {  
     session_start();
-    $_SESSION['title'] = $_REQUEST['title'];
-    $_SESSION['price'] = $_REQUEST['price'];
-    header('Location: checkout.php');
+    if(!isset($_SESSION['login'])){
+      header("Location: login.php");
+    }
     
-  }
+    if(isset($_GET['link'])){
+      $_SESSION['link'] = $_GET['link'];
+      header("Location: checkout.php");
+    }
 ?>
 <html lang="en">
 <head>
@@ -40,22 +42,25 @@
 </nav>
 <?php
 require("mysqli_connect.php");  
+
 $query = "SELECT * FROM bookstorecreator";
 $result = @mysqli_query($dbc, $query) or die(mysqli_error($dbc));
+$i = 0;
 while($rows = mysqli_fetch_array($result)){
+    $i = $i+1;
 ?>
   <div class='py-4'>
     <div class='container'>
         <div class='col-md-4'>
           <div class='card' style="width:400px">
-            <div class='card-body'>
+            <div class='card-body'>            
               <h4 class='card-title'>Book Name: <?php echo $rows['title']; ?></h4>
               <p class='card-text'>Type: <?php echo $rows['book_type']; ?></p>
               <p class='card-text'>Price: <?php echo $rows['price']; ?></p>
               <p class='card-text'>Published Year: <?php echo $rows['publishing_year']; ?></p>
               <p class='card-text'>Number of Pages: <?php echo $rows['pages']; ?></p>
               <p class='card-text'>Quantity: <?php echo $rows['quantity_available']; ?></p>
-              <a href='checkout.php' class='card-link'>Buy Now</a>
+              <a href="index1.php?link=<?php echo $rows['book_id']; ?>" class='card-link'>Buy Now</a>
             </div>
         </div>
       </div>
