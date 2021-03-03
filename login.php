@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $username = mysqli_real_escape_string($dbc,$_POST['username']);
     $password = mysqli_real_escape_string($dbc,$_POST['password']);
-    // $password= md5($password);
    
     $stmt = $dbc->prepare("select * from account where username = ? and password = ?");
 
