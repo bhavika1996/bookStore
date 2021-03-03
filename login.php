@@ -2,7 +2,6 @@
 
 <?php 
  session_start();
-
 require("mysqli_connect.php");
 $username = "";
 $password = "";
