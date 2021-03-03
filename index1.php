@@ -1,3 +1,12 @@
+<?php
+  if ($_SERVER['REQUEST_METHOD'] == 'POST' ) {  
+    session_start();
+    $_SESSION['title'] = $_REQUEST['title'];
+    $_SESSION['price'] = $_REQUEST['price'];
+    header('Location: checkout.php');
+    
+  }
+?>
 <html lang="en">
 <head>
   <title>Bootstrap Example</title>

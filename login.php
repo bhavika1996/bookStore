@@ -1,7 +1,7 @@
 
 
 <?php 
- session_start();
+ 
 
 require("mysqli_connect.php");
 $username = "";
@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $username = mysqli_real_escape_string($dbc,$_POST['username']);
     $password = mysqli_real_escape_string($dbc,$_POST['password']);
-    $password= md5($password);
+    // $password= md5($password);
    
     $stmt = $dbc->prepare("select * from account where username = ? and password = ?");
 
@@ -22,9 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         $row = $result->fetch_assoc();
         if($row['password'] == $password){
-          $_SESSION['login'] = $username;
+            session_start();
+          $_SESSION['login'] = true;
           $_SESSION['username'] = $row['username'];
-          header("Location: index.php");
+          header("Location: index1.php");
         }        
       }
       else{
@@ -35,19 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     }
     $dbc
-//     $q = "SELECT username, password from account where username='{$username}' AND password='{$password}'";
-// 	$r = mysqli_query($dbc,$q);
-
-//     if(mysqli_num_rows($r)>0){
-//         session_start();
-//         $_SESSION["login"] = true;
-//         header("Location: index.php");
-//     }else{
-//         echo "Invalid login information"; 
-//     }
-// }else {
-//     echo "error";
-// }
 ?>
 <html lang="en">
 <head>

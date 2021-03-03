@@ -65,6 +65,9 @@ if($errors = false && count($errorArray)>2){
     }
     mysqli_close($dbc);
 }
+session_start();
+    $_SESSION['title'] = $_POST['title'];
+    $_SESSION['price'] = $_POST['price'];
 }
 ?>
 <html lang="en">

@@ -10,7 +10,7 @@
         $password_repeat = mysqli_real_escape_string($dbc, $_POST['password_repeat']);
 
         if($password === $password_repeat){
-            $password = md5($password);
+            // $password = md5($password);
 
             $stmt = $dbc->prepare("insert into account(username, password) values(?,?)");
             $stmt->bind_param("ss",$username,$password);
