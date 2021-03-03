@@ -11,3 +11,9 @@ CREATE TABLE `bookstoredata`.`bookstorecreator` (
     `quantity_available` INT NOT NULL,
     PRIMARY KEY (`book_id`)
 );
+
+ALTER TABLE `bookstoredata`.`bookstorecreator` 
+CHANGE COLUMN `no.of pages` `pages` INT(11) NOT NULL ;
+
+ALTER TABLE `bookstoredata`.`bookstorecreator` 
+ADD COLUMN `image` VARCHAR(100) NULL AFTER `quantity_available`;
