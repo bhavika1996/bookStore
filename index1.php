@@ -3,7 +3,6 @@
     if(!isset($_SESSION['login'])){
       header("Location: login.php");
     }
-
     if(isset($_GET['link'])){
       $_SESSION['link'] = $_GET['link'];
       header("Location: checkout.php");
