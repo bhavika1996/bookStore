@@ -2,7 +2,8 @@
 
 <?php 
  
-
+ session_start(); 
+ session_unset();
 require("mysqli_connect.php");
 $username = "";
 $password = "";
@@ -21,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         $row = $result->fetch_assoc();
         if($row['password'] == $password){
-            session_start();
+            
           $_SESSION['login'] = true;
           $_SESSION['username'] = $row['username'];
           header("Location: index1.php");
