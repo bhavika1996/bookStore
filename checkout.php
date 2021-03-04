@@ -13,6 +13,8 @@
       $bookprice = $rows['price'];
       $bookquantity_available = $rows['quantity_available'];
     }
+
+    session_destroy();
     
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
       $quantity= $_POST['quantity'];
@@ -178,11 +180,47 @@ $(document).ready(function(){
 <br>
 <br>
 <form method="post" action="payment.php">
+<<<<<<< HEAD
+<input type="hidden" name='bookId' value="<?php echo $book_id; ?>"/>
+=======
+>>>>>>> 4270940c30ba7bcb98a4bf82dc7e59c9fcdd8ffd
 <div class="col-25">
     <div class="container">
       <h4>Cart <span class="price" style="color:black"></span></h4>
       <p><a><?php echo $booktitle; ?></a>
       <br>
+<<<<<<< HEAD
+      <br>Quantity: <span style="align:centre;">
+      <input type="number" id="quantity" name="quantity" min="0" max="<?php echo $bookquantity_available; ?>" step="1" value="1"></span>
+      <span  class="price">$<?php echo $bookprice; ?></span></p>
+      <hr>
+      <p>Total <span id="totalPrice" class="price" style="color:black"><b> $<?php echo $bookprice; ?>  </b></span></p>
+    
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="type">Firstname:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="type"  name="firstname">
+      </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="type">Lastname:</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" id="type" name="lastname">
+      </div>
+
+      <p>
+        Credit Card: <input type="radio"  value="credit" name="payment">
+        Debit Card: <input type="radio"  value="debit" name="payment">
+      </p>
+
+      <div class="col-sm-4">
+        <button type="submit" class="btn btn-default">Proceed to payment</button>
+      </div>
+
+    </div>    
+  </div>
+</div>  
+
+=======
       <br>Quantity: <span style="align:centre;"><input type="number" id="quantity" name="quantity" min="0" max="<?php echo $bookquantity_available; ?>" step="1" value="1"></span>
       <span  class="price">$<?php echo $bookprice; ?></span></p>
       <hr>
@@ -193,6 +231,7 @@ $(document).ready(function(){
       </div>
     </div>
   </div>
+>>>>>>> 4270940c30ba7bcb98a4bf82dc7e59c9fcdd8ffd
 </form>
 </body>
 </html>

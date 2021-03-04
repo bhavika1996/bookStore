@@ -1,4 +1,43 @@
 <?php
+<<<<<<< HEAD
+    //session_start();
+    require("mysqli_connect.php");
+    
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            
+            $bookid = $_POST['bookId'];
+            $username = $_POST['firstname'] . $_POST['lastname'];
+            $quantity = $_POST['quantity'];
+            $remaining_quantity = 0;   
+
+            $updateQuery = "update bookstorecreator set quantity_available = quantity_available - {$quantity} where book_id = {$bookid}";
+
+            if(mysqli_query($dbc, $updateQuery)) 
+            {
+                $qry = "insert into bookstoredata.order values (0, '$username', $bookid)";
+
+                if(mysqli_query($dbc, $qry)) 
+                {
+                    echo "Order placed <br/> <a href='index.php'>Click here for Home </a>";
+                }
+                else
+                {
+                    echo "Error in Insert" . '<br>' .  mysqli_error($dbc);
+                    echo "Error Occured!";
+                    echo "<a href='index1.php'>Click here for Home </a>";
+                }
+            }
+            else
+            {
+                echo mysqli_error($dbc);
+                echo "Error in update" . '<br>' .  "Error Occured!";
+                echo "<a href='index1.php'>Click here for Home </a>";
+            }
+    
+        }
+
+    //$dbc->close();
+=======
     session_start();
     require("mysqli_connect.php");
     
@@ -44,4 +83,5 @@
     }
 
     $dbc->close();
+>>>>>>> 4270940c30ba7bcb98a4bf82dc7e59c9fcdd8ffd
 ?>
